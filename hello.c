@@ -1,49 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 int main(){
 
-int NumeroAleatorio;
-int tentativa;
-int contador=1;
+    int NumeroAleatorio;
+    int tentativa;
+    int contador=1;
 
-srand(time(NULL));
-NumeroAleatorio = rand() % 100 + 1; 
+    srand(time(NULL));
+    NumeroAleatorio=rand()%100 + 1;
 
-printf("ACERTE O NUMERO ENTRE 0 E 100\n");
-printf("==============================\n");
-printf("%d", NumeroAleatorio);
+    printf("ACERTE O NUMERO ENTRE 1 E 100\n");
+    printf("OBS: voce so tem SETE CHANCES para acertar\n");
+    printf("------------------------------\n");
 
-do{
-    printf("%do TENTATIVA:", contador);
-    scanf("%d", &tentativa);
-    printf("\n==============================\n");
 
-    if (NumeroAleatorio > tentativa)
+    while (contador<=7 && tentativa!=NumeroAleatorio)
     {
-        printf("O NUMERO SORTEADO E MAIOR QUE %d\n", tentativa); 
-    }
-    else
-    {
-        if (NumeroAleatorio < tentativa)
+        printf("%do TENTATIVA:", contador);
+        scanf("%d", &tentativa);
+        printf("------------------------------\n");
+
+        if (NumeroAleatorio < tentativa && contador < 7)
         {
-            printf("O NUMERO SORTEADO E MENOR QUE %d\n", tentativa);
+            printf ("\nNUMERO SORTEADO E MENOR QUE %d\n", tentativa);
         }
+        else{
+            if (NumeroAleatorio > tentativa && contador < 7)
+            {
+                printf ("\nNUMERO SORTEADO E MAIOR QUE %d\n", tentativa);
+            }
+        }
+        if (tentativa!=NumeroAleatorio)
+        {
+            contador++;
+        }
+        
     }
-    if (tentativa != NumeroAleatorio)
-    { 
-         contador++;
+    
+    if (tentativa == NumeroAleatorio && contador == 1)
+    {
+        printf ("\nPARABENS VOCE ACERTOU NA PRIMEIRA TENTATIVA");
     }
-}while(tentativa != NumeroAleatorio);
-
-if (tentativa == NumeroAleatorio && contador == 1)
-{
-    printf ("PARABENS, VOCE ACERTOU NA %do TENTATIVA!\n", contador);
-}
-else
-{
-    printf ("PARABENS, VOCE ACERTOU EM %d TENTATIVAS!\n", contador);
-}
- 
-}
+    else{
+        if (tentativa == NumeroAleatorio && contador == 7)
+        {
+            printf("UFA, VOCE ACERTOU NA ULTIMA TENTATIVA");
+        }
+        else{
+            if (tentativa == NumeroAleatorio)
+            {
+            printf("\nPARABENS VOCE ACERTOU EM %d TENTATIVAS", contador);
+            }
+        }
+        
+    }
+    
+    if (tentativa != NumeroAleatorio && contador>7)
+    {
+        printf("\nINFELIZMENTE SUAS CHANCES ACABARAM.\n");
+        printf("O NUMERO SORTEADO ERA %d", NumeroAleatorio);
+    }
+            
+        }
+        
